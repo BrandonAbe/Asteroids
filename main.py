@@ -8,5 +8,8 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
+    # Initialize the pygame
+    pygame.init()
+
 if __name__ == "__main__":
     main()
