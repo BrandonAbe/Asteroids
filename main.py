@@ -25,10 +25,10 @@ def main():
                 pygame.quit()
 
         screen.fill('black')
+        player.update(dt)
         player.draw(screen)
         pygame.display.flip()
         dt = clock.tick(FPS) / 1000.0
-
 
 
 if __name__ == "__main__":
