@@ -1,6 +1,8 @@
 # Imports
 import pygame
 from constants import *
+from player import Player
+from circleshape import *
 import sys
 
 def main():
@@ -12,19 +14,21 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     dt = 0 # Delta time
+
 
     # Create game loop
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: # Check if the event is a quit event
                 pygame.quit()
-                sys.exit()
 
         screen.fill('black')
+        player.draw(screen)
         pygame.display.flip()
-        clock.tick(FPS)
-        dt = clock.get_time() / 1000.0
+        dt = clock.tick(FPS) / 1000.0
+
 
 
 if __name__ == "__main__":
