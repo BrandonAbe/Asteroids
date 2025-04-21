@@ -3,6 +3,8 @@ import pygame
 from constants import *
 from player import Player
 from circleshape import *
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 import sys
 
 def main():
@@ -14,10 +16,27 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
+
+    # Create object groups
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
-    Player.containers = (updatable, drawable) # Set both groups as containers for the player
+    asteroids = pygame.sprite.Group()
+    
+
+    # Create container properties for objects
+    Player.containers = (updatable, drawable) # Enable each Player to be updatable, drawable
+    Asteroid.containers = (asteroids, updatable, drawable) # Enable each Asteroid to be grouped together
+    AsteroidField.containers = (updatable)
+
+    '''
+    Note: Adding the Player.containers allows any new Player to be added to the groups in the tuple passed
+    in the containers argument. This means you do not need to manually call updatable.add(player)
+    and drawable.add(player). This is convenient because it reduces code repitition, and ensures
+    consistency (you can't forget to add a Player to a group)
+    '''
+
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+    asteroid_field = AsteroidField()
     dt = 0 # Delta time
 
     # Create game loop
@@ -31,6 +50,10 @@ def main():
 
         for obj in drawable: # for every object that needs to be drawn...
             obj.draw(screen) # draw to screen
+
+        for astroid in asteroids:
+            if astroid.collision_detection(player):
+                print("Game over")
 
         pygame.display.flip()
         dt = clock.tick(FPS) / 1000.0
