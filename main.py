@@ -5,6 +5,7 @@ from player import Player
 from circleshape import *
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+from shot import Shot
 import sys
 
 def main():
@@ -21,12 +22,14 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
     
 
     # Create container properties for objects
     Player.containers = (updatable, drawable) # Enable each Player to be updatable, drawable
     Asteroid.containers = (asteroids, updatable, drawable) # Enable each Asteroid to be grouped together
     AsteroidField.containers = (updatable)
+    Shot.containers = (shots, updatable, drawable)
 
     '''
     Note: Adding the Player.containers allows any new Player to be added to the groups in the tuple passed
@@ -39,7 +42,7 @@ def main():
     asteroid_field = AsteroidField()
     dt = 0 # Delta time
 
-    # Create game loop
+    # Create game loopd
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: # Check if the event is a quit event
@@ -53,7 +56,7 @@ def main():
 
         for astroid in asteroids:
             if astroid.collision_detection(player):
-                print("Game over")
+                print("Game over!")
                 sys.exit()
 
         pygame.display.flip()
