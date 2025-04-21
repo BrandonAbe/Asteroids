@@ -1,7 +1,6 @@
 import pygame
 from constants import *
 from circleshape import CircleShape
-from operator import pos
 
 
 class Player(CircleShape):
