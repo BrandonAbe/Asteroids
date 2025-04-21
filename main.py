@@ -54,6 +54,7 @@ def main():
         for astroid in asteroids:
             if astroid.collision_detection(player):
                 print("Game over")
+                sys.exit()
 
         pygame.display.flip()
         dt = clock.tick(FPS) / 1000.0
