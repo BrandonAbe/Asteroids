@@ -1,4 +1,4 @@
-**Asteroids Game**
+🚀 **Asteroids Game** 🚀
 ================
 
 *Asteroids is a space-themed game where players control a spaceship and destroy asteroids.*
