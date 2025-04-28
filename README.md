@@ -7,7 +7,7 @@
 -----------
 
 * Move your spaceship using the WASD keys
-* Destroy asteroids by shooting them with your laser (bullets)
+* Destroy asteroids by shooting them with your laser (bullets) using spacebar
 * Avoid colliding with asteroids or they will destroy your spaceship (and close the program)
 
 **Installation**
